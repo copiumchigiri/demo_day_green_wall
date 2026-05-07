@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Морь уралдаан</title>
+<style>
+ :root{
+   --bg:#2A37A3;
+   --paper:#ffffff;
+   --ink:#070580;
+   --accent:#211BDE;
+   --accent-2:#0C4D85;
+   --gold:#1F44FF;
+   --soft:#2A37A3;
+   --line:#7B8DE3;
+   --shadow:0 12px 30px rgba(88,48,20,.12);
+ }
+
+
+
+
+ *{box-sizing:border-box; margin:0; padding:0;}
+ html{scroll-behavior:smooth;}
+
+
+
+
+ body{
+   font-family: "Arial", "Helvetica", sans-serif;
+   color:var(--ink);
+   line-height:1.6;
+   background:
+     radial-gradient(circle at 10% 10%, rgba(232,176,75,.18), transparent 18%),
+     radial-gradient(circle at 90% 5%, rgba(201,123,42,.12), transparent 16%),
+     linear-gradient(180deg, #7B8DE3 0%, #8CA0FF 100%);
+   position: relative;
+   overflow-x:hidden;
+ }
+
+
+
+
+ .topbar{
+   position:sticky;
+   top:0;
+   z-index:1000;
+   backdrop-filter: blur(10px);
+   background:#B8C2FC;
+   border-bottom:1px solid #001585;
+ }
+
+
+
+
+ .nav{
+   max-width:1200px;
+   margin:0 auto;
+   display:flex;
+   justify-content:space-between;
+   align-items:center;
+   padding:14px 20px;
+   gap:16px;
+ }
+
+
+
+
+ .brand{
+   font-weight:800;
+   color:var(--accent);
+   letter-spacing:.4px;
+ }
+
+
+
+
+ .nav a{
+   text-decoration:none;
+   color:var(--ink);
+   font-size:14px;
+   margin-left:16px;
+   transition:.25s;
+ }
+
+
+
+
+ .nav a:hover{color:var(--accent);}
+
+
+
+
+ .hero{
+   min-height:95vh;
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   overflow:hidden;
+   padding:90px 20px 60px;
+   background:
+     linear-gradient(#B0BCFF, #94A4FF),
+     radial-gradient(circle at center, #D3D6F2, rgba(255,255,255,.7)),
+     linear-gradient(135deg, #000C7D,#00095C);
+   position:relative;
+ } 
+
+
+
+
+ .hero::before{
+   content:"";
+   position:absolute;
+   inset:0;
+   background:
+     repeating-linear-gradient(
+       90deg,
+       rgba(139,69,19,.03) 0,
+       rgba(139,69,19,.03) 8px,
+       transparent 8px,
+       transparent 24px
+     );
+   pointer-events:none;
+ }
+
+
+
+
+ .hero-content{
+   max-width:1100px;
+   width:100%;
+   display:grid;
+   grid-template-columns:1.1fr .9fr;
+   gap:36px;
+   align-items:center;
+   position:relative;
+   z-index:2;
+ }
+
+
+
+
+ .badge{
+   display:inline-block;
+   padding:8px 14px;
+   background:rgba(139,69,19,.1);
+   color:var(--accent);
+   border:1px solid rgba(139,69,19,.15);
+   border-radius:999px;
+   font-size:14px;
+   margin-bottom:18px;
+   font-weight:700;
+ }
+
+
+
+
+ .hero h1{
+   font-size: clamp(36px, 6vw, 72px);
+   line-height:1.05;
+   margin-bottom:16px;
+   color:#0F1AAB;
+   text-shadow:0 2px 10px rgba(255,255,255,.35);
+ }
+
+
+
+
+ .hero p{
+   font-size:18px;
+   max-width:700px;
+   margin-bottom:22px;
+   color:#000FC7;
+ }
+
+
+
+
+ .hero-meta{
+   display:flex;
+   flex-wrap:wrap;
+   gap:12px;
+   margin:22px 0 30px;
+ }
+
+
+
+
+ .chip{
+   background:rgba(255,255,255,.86);
+   border:1px solid var(--line);
+   padding:10px 14px;
+   border-radius:14px;
+   box-shadow:var(--shadow);
+   font-size:14px;
+ }
+
+
+
+
+ .cta-wrap{
+   display:flex;
+   flex-wrap:wrap;
+   gap:14px;
+ }
+
+
+
+
+ .btn{
+   display:inline-block;
+   text-decoration:none;
+   padding:13px 22px;
+   border-radius:14px;
+   font-weight:700;
+   transition:.25s;
+   box-shadow:var(--shadow);
+   border:none;
+   cursor:pointer;
+ }
+
+
+
+
+ .btn-primary{
+   background:linear-gradient(135deg, var(--accent), var(--accent-2));
+   color:#fff;
+ }
+
+
+
+
+ .btn-secondary{
+   background:#fff;
+   color:var(--accent);
+   border:1px solid var(--line);
+ }
+
+
+
+
+ .btn:hover{transform:translateY(-2px);}
+
+
+
+
+ .race-card{
+   background:rgba(255,255,255,.92);
+   border:1px solid #000757;
+   border-radius:28px;
+   box-shadow:var(--shadow);
+   padding:26px;
+   overflow:hidden;
+   position:relative;
+ }
+
+
+
+
+ .race-title{
+   font-weight:800;
+   color:var(--accent);
+   margin-bottom:16px;
+   font-size:22px;
+   text-align:center;
+ }
+
+
+
+
+ .track{
+   background:linear-gradient(180deg,#fffaf4,#f8e5d1);
+   border:2px dashed #000FAD;
+   border-radius:22px;
+   padding:18px 16px;
+   position:relative;
+   overflow:hidden;
+ }
+
+
+
+
+ .lane{
+   position:relative;
+   height:82px;
+   border-bottom:2px dashed #29329E;
+   overflow:hidden;
+ }
+
+
+
+
+ .lane:last-child{border-bottom:none;}
+
+
+
+
+ .horse{
+   position:absolute;
+   left:-70px;
+   top:18px;
+   font-size:42px;
+   animation: run 8s linear infinite;
+   filter: drop-shadow(0 4px 5px rgba(0, 0, 0, 0.15));
+   transform:scaleX(-1);
+ }
+
+
+
+
+ .horse.two{
+   top:20px;
+   animation-duration: 9.5s;
+   animation-delay: .8s;
+   transform:scaleX(-1);
+ }
+
+
+
+
+ .finish{
+   position:absolute;
+   top:0;
+   right:24px;
+   width:24px;
+   height:100%;
+   background:
+     linear-gradient(180deg,#fff 0 12.5%, #111 12.5% 25%, #fff 25% 37.5%, #111 37.5% 50%, #fff 50% 62.5%, #111 62.5% 75%, #fff 75% 87.5%, #111 87.5% 100%);
+   border-radius:6px;
+   box-shadow:0 0 0 4px rgba(255,255,255,.55);
+ }
+
+
+
+
+ @keyframes run{
+   0%{left:-70px;}
+   100%{left:calc(100% - 95px);}
+ }
+
+
+
+
+ .dust{
+   position:absolute;
+   bottom:-10px;
+   left:10%;
+   width:140%;
+   height:60px;
+   background:radial-gradient(circle, rgba(201,123,42,.10), transparent 65%);
+   animation: drift 5s ease-in-out infinite alternate;
+ }
+
+
+
+
+ @keyframes drift{
+   from{transform:translateX(-20px);}
+   to{transform:translateX(20px);}
+ }
+
+
+
+
+ section{
+   max-width:1200px;
+   margin:0 auto;
+   padding:76px 20px;
+ }
+
+
+
+
+ .section-title{
+   font-size: clamp(26px, 4vw, 42px);
+   margin-bottom:10px;
+   color:#141677;
+ }
+
+
+
+
+ .section-sub{
+   color:#504c8a;
+   margin-bottom:28px;
+   max-width:800px;
+ }
+
+
+
+
+ .grid{
+   display:grid;
+   gap:24px;
+ }
+
+
+
+
+ .grid-2{grid-template-columns:repeat(2, minmax(0,1fr));}
+ .grid-3{grid-template-columns:repeat(3, minmax(0,1fr));}
+ .grid-4{grid-template-columns:repeat(4, minmax(0,1fr));}
+
+
+
+
+ .card{
+   background:var(--paper);
+   border:1px solid var(--line);
+   border-radius:24px;
+   padding:24px;
+   box-shadow:var(--shadow);
+   transition:.25s;
+ }
+
+
+
+
+ .card:hover{transform:translateY(-4px);}
+
+
+
+
+ .card h3{
+   color:var(--accent);
+   margin-bottom:10px;
+   font-size:22px;
+ }
+
+
+
+
+ .card p, .card li{
+   color:#39374e;
+   font-size:16px;
+ }
+
+
+
+
+ .icon{
+   width:52px;
+   height:52px;
+   border-radius:16px;
+   display:grid;
+   place-items:center;
+   font-size:24px;
+   background:linear-gradient(135deg, rgba(201,123,42,.16), rgba(232,176,75,.20));
+   margin-bottom:14px;
+ }
+
+
+
+
+ .timeline{
+   display:grid;
+   gap:18px;
+   position:relative;
+   padding-left:18px;
+ }
+
+
+
+
+ .timeline::before{
+   content:"";
+   position:absolute;
+   top:0;
+   bottom:0;
+   left:9px;
+   width:3px;
+   background:linear-gradient(var(--gold), var(--accent-2));
+   border-radius:10px;
+ }
+
+
+
+
+ .timeline-item{
+   position:relative;
+   background:var(--paper);
+   border:1px solid var(--line);
+   border-radius:20px;
+   padding:18px 18px 18px 22px;
+   box-shadow:var(--shadow);
+   margin-left:16px;
+ }
+
+
+
+
+ .timeline-item::before{
+   content:"";
+   position:absolute;
+   left:-18px;
+   top:20px;
+   width:16px;
+   height:16px;
+   border-radius:50%;
+   background:var(--accent);
+   box-shadow:0 0 0 4px rgba(71, 42, 201, 0.18);
+ }
+
+
+
+
+ table{
+   width:100%;
+   border-collapse:collapse;
+   background:#fff;
+   border-radius:18px;
+   overflow:hidden;
+   box-shadow:var(--shadow);
+   border:1px solid var(--line);
+ }
+
+
+
+
+ th, td{
+   padding:16px;
+   border-bottom:1px solid #eee1d5;
+   text-align:left;
+   vertical-align:top;
+ }
+
+
+
+
+ th{
+   background:linear-gradient(135deg, #2d138b, #4d26b9);
+   color:#fff;
+   font-weight:700;
+ }
+
+
+
+
+ tr:last-child td{border-bottom:none;}
+
+
+
+
+ .feature-list{
+   list-style:none;
+   display:grid;
+   gap:12px;
+   margin-top:8px;
+ }
+
+
+
+
+ .feature-list li{
+   background:#fff9f4;
+   border:1px solid var(--line);
+   border-radius:14px;
+   padding:12px 14px;
+ }
+
+
+
+
+ .gallery-wrap{
+   background:#fff;
+   border:1px solid var(--line);
+   border-radius:28px;
+   box-shadow:var(--shadow);
+   overflow:hidden;
+ }
+
+
+
+
+ .gallery-main{
+   position:relative;
+   height:440px;
+   overflow:hidden;
+   background:linear-gradient(135deg,#fdf5ea,#f6e3ca);
+ }
+
+
+
+
+ .gallery-main img{
+   width:100%;
+   height:100%;
+   object-fit:cover;
+   display:block;
+ }
+
+
+
+
+ .gallery-caption{
+   position:absolute;
+   left:20px;
+   bottom:20px;
+   background:rgba(255,255,255,.88);
+   color:#23194d;
+   padding:10px 16px;
+   border-radius:14px;
+   font-weight:700;
+   box-shadow:var(--shadow);
+ }
+
+
+
+
+ .gallery-controls{
+   display:flex;
+   justify-content:space-between;
+   gap:12px;
+   padding:16px;
+   background:#fffaf4;
+   border-top:1px solid var(--line);
+   flex-wrap:wrap;
+ }
+
+
+
+
+ .thumbs{
+   display:grid;
+   grid-template-columns:repeat(4,1fr);
+   gap:12px;
+   padding:16px;
+   background:#fff;
+ }
+
+
+
+
+ .thumb{
+   border:2px solid transparent;
+   border-radius:16px;
+   overflow:hidden;
+   cursor:pointer;
+   box-shadow:var(--shadow);
+   transition:.25s;
+   background:#f6ead9;
+ }
+
+
+
+
+ .thumb.active{
+   border-color:var(--accent);
+   transform:translateY(-2px);
+ }
+
+
+
+
+ .thumb img{
+   width:100%;
+   height:110px;
+   object-fit:cover;
+   display:block;
+ }
+
+
+
+
+ .js-demo{
+   display:grid;
+   gap:20px;
+ }
+
+
+
+
+ .race-mini{
+   display:flex;
+   align-items:center;
+   gap:12px;
+   background:#fff9f3;
+   border:1px dashed var(--line);
+   padding:14px;
+   border-radius:16px;
+   overflow:hidden;
+   position:relative;
+   min-height:86px;
+ }
+
+
+
+
+ .mini-track{
+   position:relative;
+   flex:1;
+   height:28px;
+   background:linear-gradient(90deg,#efe1d1,#f8efe6);
+   border-radius:999px;
+   border:1px solid #ead3bd;
+   overflow:visible;
+ }
+
+
+
+
+ .mini-horse{
+   position:absolute;
+   left:8px;
+   top:-10px;
+   font-size:34px;
+   line-height:1;
+   transition:transform .5s ease;
+   transform:scaleX(-1) translateX(0);
+   z-index:2;
+   will-change:transform;
+ }
+
+
+
+
+ .mini-finish{
+   position:absolute;
+   right:22px;
+   top:-12px;
+   width:18px;
+   height:52px;
+   border-radius:4px;
+   background:
+     linear-gradient(
+       180deg,
+       #ffffff 0 12.5%,
+       #111111 12.5% 25%,
+       #ffffff 25% 37.5%,
+       #111111 37.5% 50%,
+       #ffffff 50% 62.5%,
+       #111111 62.5% 75%,
+       #ffffff 75% 87.5%,
+       #111111 87.5% 100%
+     );
+   border:2px solid #ffffff;
+   box-shadow:0 0 0 1px #d8c0aa;
+   z-index:1;
+ }
+
+
+
+
+ .status{
+   font-weight:700;
+   color:var(--accent);
+   margin-top:12px;
+ }
+
+
+
+
+ .footer{
+   padding:32px 20px 50px;
+   text-align:center;
+   color:#4f4a6e;
+   border-top:1px solid rgba(139,69,19,.12);
+   background:rgba(255,255,255,.7);
+ }
+
+
+
+
+ .ornament{
+   height:12px;
+   width:100%;
+   margin:20px 0 8px;
+   background:
+     radial-gradient(circle at 6px 6px, var(--gold) 0 4px, transparent 4px),
+     radial-gradient(circle at 30px 6px, var(--accent-2) 0 4px, transparent 4px);
+   background-size:48px 12px;
+   opacity:.6;
+ }
+
+
+
+
+ .note{
+   font-size:14px;
+   color:#61587a;
+   margin-top:10px;
+ }
+
+
+
+
+ .small{
+   font-size:14px;
+   color:#61587a;
+   margin-top:10px;
+ }
+
+
+
+
+ .winner-screen{
+   position:fixed;
+   inset:0;
+   background:rgba(5, 8, 40, 0.82);
+   display:none;
+   justify-content:center;
+   align-items:center;
+   z-index:9999;
+   padding:20px;
+ }
+
+
+
+
+ .winner-box{
+   width:min(92vw, 520px);
+   background:linear-gradient(135deg, #ffffff, #e9edff);
+   border:3px solid #5f74ff;
+   border-radius:28px;
+   padding:34px 24px;
+   text-align:center;
+   box-shadow:0 20px 60px rgba(0,0,0,.35);
+   animation:winnerPop .35s ease;
+ }
+
+
+
+
+ .winner-emoji{
+   font-size:64px;
+   margin-bottom:14px;
+ }
+
+
+
+
+ .winner-title{
+   font-size:38px;
+   font-weight:800;
+   color:#1623b8;
+   margin-bottom:10px;
+ }
+
+
+
+
+ .winner-text{
+   font-size:22px;
+   font-weight:700;
+   color:#2a2f72;
+   margin-bottom:24px;
+ }
+
+
+
+
+ @keyframes winnerPop{
+   from{
+     transform:scale(.8);
+     opacity:0;
+   }
+   to{
+     transform:scale(1);
+     opacity:1;
+   }
+ }
+
+
+
+
+ @media (max-width: 980px){
+   .hero-content,
+   .grid-4,
+   .grid-3,
+   .grid-2{
+     grid-template-columns:1fr;
+   }
+   .nav{
+     flex-direction:column;
+     align-items:flex-start;
+   }
+   .nav-links a{
+     margin:0 12px 0 0;
+     display:inline-block;
+     margin-top:8px;
+   }
+   .thumbs{
+     grid-template-columns:repeat(2,1fr);
+   }
+   .gallery-main{
+     height:320px;
+   }
+ }
+
+
+
+
+ @media (max-width: 640px){
+   .hero{
+     padding-top:120px;
+   }
+   .card, .race-card, .timeline-item{padding:18px;}
+   th, td{padding:12px;}
+   .horse{font-size:34px;}
+   .lane{height:72px;}
+   .gallery-main{height:260px;}
+   .winner-title{font-size:30px;}
+   .winner-text{font-size:18px;}
+ }
+</style>
+</head>
+<body>
+
+
+
+
+<div class="topbar">
+ <div class="nav">
+   <div class="brand">НЭСТ ЭДҮКЭЙШН АЙ ТИ ДУНД СУРГУУЛЬ</div>
+   <div class="nav-links">
+     <a href="#about">Танилцуулга</a>
+     <a href="#plan">Төлөвлөгөө</a>
+     <a href="#team">Баг</a>
+     <a href="#build">Төслийн үйл явц</a>
+     <a href="#gallery">Зургийн цомог</a>
+     <a href="#jsdemo">Морь уралдуулах</a>
+   </div>
+ </div>
+</div>
+
+
+
+
+<header class="hero">
+ <div class="hero-content">
+   <div>
+     <div class="badge">Нэгдмэл төслийн ажил • IoT • ITW • IT • График дизайн • Монгол хэл • Англи хэл</div>
+     <h1>Морь уралдаан</h1>
+     <p>
+       Монгол уламжлалт шагайн наадгайн санааг Arduino, код, дизайн, багийн хамтын ажиллагаатай
+       хослуулсан бүтээлч төсөл.
+     </p>
+
+
+
+
+     <div class="hero-meta">
+       <div class="chip"><strong>Анги:</strong> 8б</div>
+       <div class="chip"><strong>Байршил:</strong> Улаанбаатар хот</div>
+       <div class="chip"><strong>Он:</strong> 2026</div>
+     </div>
+
+
+
+
+     <div class="cta-wrap">
+       <a href="#about" class="btn btn-primary">Төслийг үзэх</a>
+       <a href="#gallery" class="btn btn-secondary">Явцын зураг</a>
+     </div>
+   </div>
+
+
+
+
+   <div class="race-card">
+     <div class="race-title">🏇 Төслийн уралдааны дүрслэл</div>
+     <div class="track">
+       <div class="lane">
+         <div class="horse">🐎</div>
+         <div class="finish"></div>
+       </div>
+       <div class="lane">
+         <div class="horse two">🐎</div>
+         <div class="finish"></div>
+       </div>
+       <div class="dust"></div>
+     </div>
+     <p class="note">2 тоглогч товчлуур дээр дарж, шагай сэгсэрч, “морь” буусан тоогоор замдаа урагшилна.</p>
+   </div>
+ </div>
+</header>
+
+
+
+
+<section id="about">
+ <h2 class="section-title">Төслийн танилцуулга</h2>
+ <p class="section-sub">
+   Энэхүү төсөл нь Монголын уламжлалт шагайн наадгайг орчин үеийн технологитой уялдуулан,
+   сурагчдын сонирхлыг татахуйц тоглоомын хэлбэрээр бүтээсэн нэгдмэл ажил юм.
+ </p>
+
+
+
+
+ <div class="grid grid-2">
+   <div class="card">
+     <div class="icon">💡</div>
+     <h3>Санаагаа хэрхэн олсон тухай</h3>
+     <p>
+       Манай баг Монголын уламжлалт тоглоом болох шагайн наадгайг илүү сонирхолтой,
+       орчин үеийн хэлбэрт оруулах санааг гаргасан. Ингэснээр хүүхдүүд технологи
+       ашиглан уламжлалт тоглоомоо сурах боломжтой гэж үзсэн.
+     </p>
+   </div>
+
+
+
+
+   <div class="card">
+     <div class="icon">🧩</div>
+     <h3>Хэрхэн ашиглах</h3>
+     <p>
+       2 тоглогч тус бүр товчлууртай байна. Тоглогч товчлуур дээр дарахад 4 шагай
+       сэгсрэгдэнэ. Хэрэв морь буувал тухайн тоглогчийн морь буусан шагайн тоогоор
+       урагшилна. Хамгийн түрүүнд барианд орсон тоглогч ялна.
+     </p>
+   </div>
+ </div>
+
+
+
+
+ <div class="ornament"></div>
+</section>
+
+
+
+
+<section id="plan">
+ <h2 class="section-title">Хэрэгжүүлэх төлөвлөгөө</h2>
+ <p class="section-sub">
+   Төслийн үндсэн хэсгүүдийг үе шаттайгаар бэлдэж, механик бүтэц, тоглогчийн зам, код,
+   мэдрэгчийн ажиллагааг нэгтгэн хөгжүүлж байна.
+ </p>
+ <div class="timeline">
+   <div class="timeline-item">
+     <strong>1-р үе шат:</strong> Их бие болон шагай сэгсрэх механизмыг бэлэн болгосон.
+   </div>
+   <div class="timeline-item">
+     <strong>2-р үе шат:</strong> Тоглогчийн шагай хөдөлгөх зам буюу line хэсгийг хийсэн.
+   </div>
+   <div class="timeline-item">
+     <strong>3-р үе шат:</strong> Color sensor ашиглан морь буусан эсэхийг шалгах код бэлэн болгосон.
+   </div>
+   <div class="timeline-item">
+     <strong>4-р үе шат:</strong> Бүх кодыг нэгтгэх, турших үйл явц явагдсаар байна.
+   </div>
+ </div>
+</section>
+
+
+
+
+<section id="team">
+ <h2 class="section-title">Багийн гишүүд</h2>
+ <p class="section-sub">
+   Манай төслийн баг гишүүн бүр өөр өөр үүрэг хариуцлага хүлээн хамтран ажилласан.
+ </p>
+
+
+
+
+ <table>
+   <thead>
+     <tr>
+       <th>Багийн гишүүн</th>
+       <th>Үүрэг</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr>
+       <td>А.Баярмаа</td>
+       <td>Бичиг баримт, бичлэг, дизайн</td>
+     </tr>
+     <tr>
+       <td>Ц.Төгс-Итгэл</td>
+       <td>Код бичих</td>
+     </tr>
+     <tr>
+       <td>Э.Эрхэмбилиг</td>
+       <td>Код бичих</td>
+     </tr>
+     <tr>
+       <td>Э.Мэргэнгүн</td>
+       <td>Дизайн</td>
+     </tr>
+   </tbody>
+ </table>
+</section>
+
+
+
+
+<section id="build">
+ <h2 class="section-title">Төсөл бүтээх үйл явц</h2>
+ <p class="section-sub">
+   Төслийг бүтээхэд ашигласан үндсэн хэрэгсэл, программ, дизайн болон ажлын бүтэц.
+ </p>
+
+
+
+
+ <div class="grid grid-2">
+   <div class="card">
+     <div class="icon">🔌</div>
+     <h3>Схем / Эд анги / Холболт</h3>
+     <ul class="feature-list">
+       <li>Компьютер</li>
+       <li>Arduino</li>
+       <li>Tinkercad</li>
+       <li>USB холболт</li>
+     </ul>
+   </div>
+
+
+
+
+   <div class="card">
+     <div class="icon">📱</div>
+     <h3>Апп / Хэрэгсэл</h3>
+     <ul class="feature-list">
+       <li>Arduino</li>
+       <li>Arduino IDE</li>
+       <li>Mega Arduino 2560</li>
+     </ul>
+   </div>
+
+
+
+
+   <div class="card">
+     <div class="icon">💻</div>
+     <h3>Программ</h3>
+     <ul class="feature-list">
+       <li>Google Docs</li>
+       <li>Tinkercad</li>
+       <li>Arduino IDE</li>
+     </ul>
+   </div>
+
+
+
+
+   <div class="card">
+     <div class="icon">🎨</div>
+     <h3>Дизайн</h3>
+     <p>
+       2 тоглогчийн товч дээр дарахад 4 шагай сэгсрэгдэн, морь буусан тоогоор
+       зам дээрээ урагшлах байдлаар загварчилсан.
+     </p>
+   </div>
+ </div>
+</section>
+
+
+
+
+<section id="gallery">
+ <h2 class="section-title">Төсөл хийх явцын зураг</h2>
+ <p class="section-sub">
+ </p>
+
+
+
+
+ <div class="gallery-wrap">
+   <div class="gallery-main">
+     <img id="mainImage" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1400&q=80" alt="Төслийн явцын зураг">
+     <div class="gallery-caption" id="mainCaption">1-р зураг: Код дээр ажиллаж буй үе</div>
+   </div>
+
+
+
+
+   <div class="gallery-controls">
+     <div>
+       <button class="btn btn-primary" onclick="prevImage()">◀ Өмнөх</button>
+       <button class="btn btn-secondary" onclick="nextImage()">Дараах ▶</button>
+     </div>
+     <div class="small">JS ашиглан зураг солигдох байдлаар хийсэн.</div>
+   </div>
+
+
+
+
+   <div class="thumbs">
+     <div class="thumb active" onclick="showImage(0)">
+       <img src="https://images.unsplash.com/photo-1776784825657-75cabb3f6787?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+     </div>
+     <div class="thumb" onclick="showImage(1)">
+       <img src="https://images.unsplash.com/photo-1776784862444-c961ecb5f897?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+     </div>
+     <div class="thumb" onclick="showImage(2)">
+       <img src="https://images.unsplash.com/photo-1776784851162-f31fa4cdb3b8?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+     </div>
+     <div class="thumb" onclick="showImage(3)">
+       <img src="https://images.unsplash.com/photo-1776784877916-a0f26894722a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+     </div>
+   </div>
+ </div>
+</section>
+<section id="test">
+ <h2 class="section-title">Төслийн тест / шалгалт</h2>
+ <p class="section-sub">
+   Төслийн ажиллагааг турших явцад цахилгаан, орчны нөхцөл, төхөөрөмжийн хөдөлгөөн,
+   товчлуурын оролтыг шалгасан.
+ </p>
+
+
+
+
+ <div class="grid grid-3">
+   <div class="card">
+     <div class="icon">⚡</div>
+     <h3>Хүчдэл power</h3>
+     <p>
+       Цахилгааны уртасгагч, батарей, USB cable, 5V ашиглана.
+       5V-с их байвал шатах аюултай, бага байвал хүчдэл хангалтгүй тул ажиллахгүй.
+     </p>
+   </div>
+
+
+
+
+   <div class="card">
+     <div class="icon">🌍</div>
+     <h3>Орчноос хамаарах өөрчлөлт</h3>
+     <p>
+       Батарей эсвэл power bank ашиглан, тэгшхэн газар байхад хаана ч зөөж тоглох боломжтой.
+     </p>
+   </div>
+
+
+
+
+   <div class="card">
+     <div class="icon">🔎</div>
+     <h3>Ажиглалт</h3>
+     <p>
+       Шагай сэгсрэх механизм амжилттай ажилласан. Товчлуурын оролт мөн зөв ажиллаж байгаа.
+     </p>
+   </div>
+ </div>
+</section>
+
+
+
+
+<section id="jsdemo">
+ <h2 class="section-title">Морь уралдуулах demo</h2>
+ <p class="section-sub">
+ </p>
+
+
+
+
+ <div class="js-demo">
+   <div class="js-box">
+     <h3>Тоглогч 1 ба 2-ын энгийн уралдаан</h3>
+     <div class="cta-wrap" style="margin:14px 0 18px;">
+       <button class="btn btn-primary" onclick="playTurn(1)">Тоглогч 1 дарна</button>
+       <button class="btn btn-secondary" onclick="playTurn(2)">Тоглогч 2 дарна</button>
+       <button class="btn btn-secondary" onclick="resetRace()">Дахин эхлүүлэх</button>
+     </div>
+
+
+
+
+     <div class="race-mini" style="margin-bottom:14px;">
+       <strong style="min-width:92px;">Тоглогч 1</strong>
+       <div class="mini-track">
+         <div class="mini-horse" id="horse1">🐎</div>
+         <div class="mini-finish">🏁</div>
+       </div>
+     </div>
+
+
+
+
+     <div class="race-mini">
+       <strong style="min-width:92px;">Тоглогч 2</strong>
+       <div class="mini-track">
+         <div class="mini-horse" id="horse2">🐎</div>
+         <div class="mini-finish">🏁</div>
+       </div>
+     </div>
+
+
+
+
+     <div class="status" id="statusText">Тоглоом эхлэхэд бэлэн.</div>
+   </div>
+ </div>
+</section>
+
+
+
+
+<footer class="footer">
+ <div><strong>НЭСТ ЭДҮКЭЙШН АЙ ТИ ДУНД СУРГУУЛЬ</strong></div>
+ <div>Морь уралдаан • 2026</div>
+</footer>
+
+
+
+
+<div class="winner-screen" id="winnerScreen">
+ <div class="winner-box">
+   <div class="winner-emoji">🏆</div>
+   <div class="winner-title">Хожлоо!</div>
+   <div class="winner-text" id="winnerText">Тоглогч 1 түрүүлж барианд хүрлээ!</div>
+   <button class="btn btn-primary" onclick="resetRace()">Дахин тоглох</button>
+ </div>
+</div>
+
+
+
+
+<script>
+ const images = [
+   {
+     src: "https://images.unsplash.com/photo-1776784825657-75cabb3f6787?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+     caption: "1-р зураг: Код дээр ажиллаж буй үе"
+   },
+   {
+     src: "https://images.unsplash.com/photo-1776784862444-c961ecb5f897?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+     caption: "2-р зураг: Төхөөрөмж угсарч буй үе"
+   },
+   {
+     src: "https://images.unsplash.com/photo-1776784851162-f31fa4cdb3b8?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+     caption: "3-р зураг: Багийн хамтын ажиллагааны үе"
+   },
+   {
+     src: "https://images.unsplash.com/photo-1776784877916-a0f26894722a?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+     caption: "4-р зураг: Туршилт, шалгалтын үе"
+   }
+ ];
+
+
+
+
+ let currentIndex = 0;
+ const mainImage = document.getElementById("mainImage");
+ const mainCaption = document.getElementById("mainCaption");
+ const thumbs = document.querySelectorAll(".thumb");
+
+
+
+
+ function updateGallery() {
+   mainImage.src = images[currentIndex].src;
+   mainCaption.textContent = images[currentIndex].caption;
+
+
+
+
+   thumbs.forEach((thumb, index) => {
+     thumb.classList.toggle("active", index === currentIndex);
+   });
+ }
+
+
+
+
+ function showImage(index) {
+   currentIndex = index;
+   updateGallery();
+ }
+
+
+
+
+ function nextImage() {
+   currentIndex++;
+   if (currentIndex >= images.length) {
+     currentIndex = 0;
+   }
+   updateGallery();
+ }
+
+
+
+
+ function prevImage() {
+   currentIndex--;
+   if (currentIndex < 0) {
+     currentIndex = images.length - 1;
+   }
+   updateGallery();
+ }
+
+
+
+
+ let player1 = 0;
+ let player2 = 0;
+ let raceFinished = false;
+ const stepPx = 28;
+
+
+
+
+ function getHorse(horseId) {
+   return document.getElementById(horseId);
+ }
+
+
+
+
+ function getTrack(horseId) {
+   return getHorse(horseId).parentElement;
+ }
+
+
+
+
+ function getFinish(horseId) {
+   return getTrack(horseId).querySelector(".mini-finish");
+ }
+
+
+
+
+ function maxTravelPx(horseId) {
+   const horse = getHorse(horseId);
+   const finish = getFinish(horseId);
+   return finish.offsetLeft - horse.offsetLeft - 26;
+ }
+
+
+
+
+ function updateHorsePosition() {
+   const h1 = Math.min(player1, maxTravelPx("horse1"));
+   const h2 = Math.min(player2, maxTravelPx("horse2"));
+
+
+
+
+   getHorse("horse1").style.transform = `scaleX(-1) translateX(${-h1}px)`;
+   getHorse("horse2").style.transform = `scaleX(-1) translateX(${-h2}px)`;
+ }
+
+
+
+
+ function hasReachedFinish(horseId, playerDistance) {
+   return playerDistance >= maxTravelPx(horseId);
+ }
+
+
+
+
+ function showWinner(message) {
+   document.getElementById("winnerText").textContent = message;
+   document.getElementById("winnerScreen").style.display = "flex";
+ }
+
+
+
+
+ function playTurn(player) {
+   if (raceFinished) return;
+
+
+
+
+   const step = Math.floor(Math.random() * 4) + 1;
+   const move = step * stepPx;
+   const statusText = document.getElementById("statusText");
+
+
+
+
+   if (player === 1) {
+     player1 += move;
+     statusText.textContent = "Тоглогч 1 " + step + " алхам урагшиллаа.";
+   } else {
+     player2 += move;
+     statusText.textContent = "Тоглогч 2 " + step + " алхам урагшиллаа.";
+   }
+
+
+
+
+   updateHorsePosition();
+
+
+
+
+   setTimeout(() => {
+     const p1Win = hasReachedFinish("horse1", player1);
+     const p2Win = hasReachedFinish("horse2", player2);
+
+
+
+
+     if (p1Win || p2Win) {
+       raceFinished = true;
+
+
+
+
+       if (p1Win && p2Win) {
+         statusText.textContent = "Хоёр тоглогч зэрэг барианд хүрлээ!";
+         showWinner("Хоёр тоглогч зэрэг барианд хүрлээ!");
+       } else if (p1Win) {
+         statusText.textContent = "🏆 Тоглогч 1 түрүүллээ!";
+         showWinner("Тоглогч 1 түрүүлж барианд хүрлээ!");
+       } else if (p2Win) {
+         statusText.textContent = "🏆 Тоглогч 2 түрүүллээ!";
+         showWinner("Тоглогч 2 түрүүлж барианд хүрлээ!");
+       }
+     }
+   }, 520);
+ }
+
+
+
+
+ function resetRace() {
+   player1 = 0;
+   player2 = 0;
+   raceFinished = false;
+   document.getElementById("winnerScreen").style.display = "none";
+   updateHorsePosition();
+   document.getElementById("statusText").textContent = "Тоглоом дахин эхэллээ.";
+ }
+
+
+
+
+ window.addEventListener("load", () => {
+   updateHorsePosition();
+   updateGallery();
+ });
+
+
+
+
+ window.addEventListener("resize", updateHorsePosition);
+
+
+
+
+ setInterval(nextImage, 5000);
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
